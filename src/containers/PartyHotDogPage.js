@@ -1,15 +1,13 @@
 // libraries
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // src
-import "./App.css";
-import HotDogForm from "./PartyHotDogForm";
+import PartyHotDogForm from "./PartyHotDogForm";
 import HotDogCalculationResults from "./HotDogCalculationResults";
 import calculateHotDogs from "../helpers/hotDogCalculations";
-import PartyHotDogPage from "./containers/PartyHotDogPage";
 
-class App extends Component {
+class PartyHotDogPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,18 +30,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <section>
+        <div>
+          What's the min number of sausages and buns you must buy to have a 1:1
+          ratio of hot dogs and sausages?
+        </div>
         <PartyHotDogForm updateCalculations={this.updateCalculations} />
         <HotDogCalculationResults
           sausagePkgs={this.state.numSausagePkgs}
           bunPkgs={this.state.numBunPkgs}
           hotDogs={this.state.numHotDogs}
         />
-        <Route path="/party" component={PartyHotDogPage} />
-        <Redirect to="/" />
-      </div>
+        <Link to="/">Calculating for one person?</Link>
+      </section>
     );
   }
 }
 
-export default App;
+export default PartyHotDogPage;

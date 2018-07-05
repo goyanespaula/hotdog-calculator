@@ -1,15 +1,13 @@
 // libraries
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // src
-import "./App.css";
-import HotDogForm from "./PartyHotDogForm";
+import HotDogForm from "./HotDogForm";
 import HotDogCalculationResults from "./HotDogCalculationResults";
 import calculateHotDogs from "../helpers/hotDogCalculations";
-import PartyHotDogPage from "./containers/PartyHotDogPage";
 
-class App extends Component {
+class HotDogPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,30 +18,31 @@ class App extends Component {
     this.updateCalculations = this.updateCalculations.bind(this);
   }
 
-  updateCalculations({ sausagesPerPkg, bunsPerPkg, numGuests, dogsPerGuest }) {
+  updateCalculations({ sausagesPerPkg, bunsPerPkg }) {
     var { numSausagePkgs, numBunPkgs, numHotDogs } = calculateHotDogs(
       +sausagesPerPkg,
-      +bunsPerPkg,
-      +numGuests,
-      +dogsPerGuest
+      +bunsPerPkg
     );
     this.setState({ numSausagePkgs, numBunPkgs, numHotDogs });
   }
 
   render() {
     return (
-      <div className="App">
-        <PartyHotDogForm updateCalculations={this.updateCalculations} />
+      <section>
+        <div>
+          What's the min number of sausages and buns you must buy to have a 1:1
+          ratio of hot dogs and sausages?
+        </div>
+        <HotDogForm updateCalculations={this.updateCalculations} />
         <HotDogCalculationResults
           sausagePkgs={this.state.numSausagePkgs}
           bunPkgs={this.state.numBunPkgs}
           hotDogs={this.state.numHotDogs}
         />
-        <Route path="/party" component={PartyHotDogPage} />
-        <Redirect to="/" />
-      </div>
+        <Link to="/party">Calculating for a cookout?</Link>
+      </section>
     );
   }
 }
 
-export default App;
+export default HotDogPage;

@@ -24,15 +24,24 @@ function getLCM(num1, num2) {
 
 /**
  * Returns lowest amount of sausage & buns packages needed for a 1:1 ratio and the total hot dogs made
- * @param {number} sausagesPerPackage
- * @param {number} bunsPerPackage
+ * @param {number} sausagesPerPkg
+ * @param {number} bunsPerPkg
  * @returns {Object}
  */
-function calculateHotDogs(sausagesPerPackage, bunsPerPackage) {
-  var lcm = getLCM(sausagesPerPackage, bunsPerPackage);
-  var numSausagePkgs = lcm / sausagesPerPackage;
-  var numBunPkgs = lcm / bunsPerPackage;
+function calculateHotDogs(
+  sausagesPerPkg,
+  bunsPerPkg,
+  numGuests = 1,
+  dogsPerGuest = 1
+) {
+  var minHotDogs = numGuests * dogsPerGuest;
+  var lcm = getLCM(sausagesPerPkg, bunsPerPkg);
   var numHotDogs = lcm;
+  while (numHotDogs < minHotDogs) {
+    numHotDogs += lcm;
+  }
+  var numSausagePkgs = numHotDogs / sausagesPerPkg;
+  var numBunPkgs = numHotDogs / bunsPerPkg;
 
   return { numSausagePkgs, numBunPkgs, numHotDogs };
 }

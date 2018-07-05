@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class HotDogCalculations extends Component {
+class HotDogCalculationResults extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,14 +9,12 @@ class HotDogCalculations extends Component {
     return (
       <div>
         <br />
-        <div>
-          Total Number of Sausage Packages: {this.props.sausagePackages}
-        </div>
-        <div>Total Number of Bun Packages: {this.props.bunPackages}</div>
+        <div>Total Number of Sausage Pkgs: {this.props.sausagePkgs}</div>
+        <div>Total Number of Bun Pkgs: {this.props.bunPkgs}</div>
         <div>Total Number of Hot Dogs: {this.props.hotDogs}</div>
       </div>
     );
   }
 }
 
-export default HotDogCalculations;
+export default HotDogCalculationResults;
