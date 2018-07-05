@@ -13,19 +13,22 @@ class App extends Component {
     this.state = {
       numSausagePkgs: "",
       numBunPkgs: "",
-      numHotDogs: ""
+      numHotDogs: "",
+      altNumSausagePkgs: "",
+      altNumBunPkgs: "",
+      altNumHotDogs: ""
     };
     this.updateCalculations = this.updateCalculations.bind(this);
   }
 
   updateCalculations({ sausagesPerPkg, bunsPerPkg, numGuests, dogsPerGuest }) {
-    var { numSausagePkgs, numBunPkgs, numHotDogs } = calculateHotDogs(
+    var newState = calculateHotDogs(
       +sausagesPerPkg,
       +bunsPerPkg,
       +numGuests,
       +dogsPerGuest
     );
-    this.setState({ numSausagePkgs, numBunPkgs, numHotDogs });
+    this.setState(newState);
   }
 
   render() {
@@ -33,9 +36,12 @@ class App extends Component {
       <div className="App">
         <HotDogForm updateCalculations={this.updateCalculations} />
         <HotDogCalculationResults
-          sausagePkgs={this.state.numSausagePkgs}
-          bunPkgs={this.state.numBunPkgs}
-          hotDogs={this.state.numHotDogs}
+          numSausagePkgs={this.state.numSausagePkgs}
+          numBunPkgs={this.state.numBunPkgs}
+          numHotDogs={this.state.numHotDogs}
+          altNumSausagePkgs={this.state.altNumSausagePkgs}
+          altNumBunPkgs={this.state.altNumBunPkgs}
+          altNumHotDogs={this.state.altNumHotDogs}
         />
       </div>
     );

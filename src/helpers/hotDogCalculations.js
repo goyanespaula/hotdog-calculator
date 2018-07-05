@@ -37,13 +37,29 @@ function calculateHotDogs(
   var minHotDogs = numGuests * dogsPerGuest;
   var lcm = getLCM(sausagesPerPkg, bunsPerPkg);
   var numHotDogs = lcm;
+  var altNumHotDogs = numHotDogs;
+
   while (numHotDogs < minHotDogs) {
     numHotDogs += lcm;
+    if (
+      Math.abs(altNumHotDogs - minHotDogs) > Math.abs(numHotDogs - minHotDogs)
+    ) {
+      altNumHotDogs = numHotDogs;
+    }
   }
   var numSausagePkgs = numHotDogs / sausagesPerPkg;
+  var altNumSausagePkgs = altNumHotDogs / sausagesPerPkg;
   var numBunPkgs = numHotDogs / bunsPerPkg;
+  var altNumBunPkgs = altNumHotDogs / bunsPerPkg;
 
-  return { numSausagePkgs, numBunPkgs, numHotDogs };
+  return {
+    numSausagePkgs,
+    numBunPkgs,
+    numHotDogs,
+    altNumSausagePkgs,
+    altNumBunPkgs,
+    altNumHotDogs
+  };
 }
 
 export default calculateHotDogs;
