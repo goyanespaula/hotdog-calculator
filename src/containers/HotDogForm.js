@@ -10,7 +10,9 @@ class HotDogForm extends Component {
     super(props);
     this.state = {
       sausagesPerPkg: "",
-      bunsPerPkg: ""
+      bunsPerPkg: "",
+      numGuests: "",
+      dogsPerGuest: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,6 +48,22 @@ class HotDogForm extends Component {
           onChange={this.handleChange}
         />
         <div>buns/package</div>
+        <label htmlFor="numGuests">Number of People to Feed:</label>
+        <input
+          type="number"
+          name="numGuests"
+          id="numGuests"
+          onChange={this.handleChange}
+        />
+        <div>guests</div>
+        <label htmlFor="dogsPerGuest">Number of Hot Dogs per Guest:</label>
+        <input
+          type="number"
+          name="dogsPerGuest"
+          id="dogsPerGuest"
+          onChange={this.handleChange}
+        />
+        <div>guests</div>
         <input type="submit" />
       </form>
     );

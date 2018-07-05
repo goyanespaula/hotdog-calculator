@@ -1,13 +1,11 @@
 // libraries
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
 
 // src
 import "./App.css";
-import HotDogForm from "./PartyHotDogForm";
-import HotDogCalculationResults from "./HotDogCalculationResults";
-import calculateHotDogs from "../helpers/hotDogCalculations";
-import PartyHotDogPage from "./containers/PartyHotDogPage";
+import HotDogForm from "./containers/HotDogForm";
+import HotDogCalculationResults from "./containers/HotDogCalculationResults";
+import calculateHotDogs from "./helpers/hotDogCalculations";
 
 class App extends Component {
   constructor(props) {
@@ -33,14 +31,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PartyHotDogForm updateCalculations={this.updateCalculations} />
+        <HotDogForm updateCalculations={this.updateCalculations} />
         <HotDogCalculationResults
           sausagePkgs={this.state.numSausagePkgs}
           bunPkgs={this.state.numBunPkgs}
           hotDogs={this.state.numHotDogs}
         />
-        <Route path="/party" component={PartyHotDogPage} />
-        <Redirect to="/" />
       </div>
     );
   }

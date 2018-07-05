@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+const propTypes = {
+  sausagePkgs: PropTypes.string.isRequired,
+  bunPkgs: PropTypes.string.isRequired,
+  hotDogs: PropTypes.string.isRequired
+};
+
 class HotDogCalculationResults extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
@@ -16,5 +19,7 @@ class HotDogCalculationResults extends Component {
     );
   }
 }
+
+HotDogCalculationResults.propTypes = propTypes;
 
 export default HotDogCalculationResults;
